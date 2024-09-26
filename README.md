@@ -8,3 +8,9 @@ This repo is focused on covering nuances I've discovered and some interpretation
 I'm not intending to write a tutorial, Clickhouse does that fantastically already but rather I plan to use documentation in conjunction with examples I've found which will hopefully be informative and possibly serve as some examples on how to do it.
 
 For simplicity I have copied over their [docker-compose.yml](https://github.com/ClickHouse/examples/tree/main/docker-compose-recipes/recipes/cluster_1S_2R_ch_proxy) for a cluster with 1 node and 2 replicas and proxy for our examples. It will allow us to make use of clustering for behaviours even when configs to simulate it exists
+
+## Setup
+
+- Ensure you have Elixir 1.17.0 & OTP 27 running
+- `mix deps.get && mix create_database`
+- `docker compose up`

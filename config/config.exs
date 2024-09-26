@@ -11,6 +11,10 @@ config :clickhouse_behaviours,
   ecto_repos: [ClickhouseBehaviours.Repo],
   generators: [timestamp_type: :utc_datetime]
 
+config :clickhouse_behaviours,
+  clickhouse_url: "http://default:@localhost:8123/ch_behaviours"
+
+config :clickhouse_behaviours, migration_url: "http://default:@localhost:8123"
 # Configures the endpoint
 config :clickhouse_behaviours, ClickhouseBehavioursWeb.Endpoint,
   url: [host: "localhost"],
