@@ -53,7 +53,7 @@ You can run the simulations yourself with the following mix task.
 
 ```bash
 # There are additional options for --default and --settings, without options it will run --default
-mix async_insert.replicated_trees --all (options for --default and --settings)
+mix async_insert.replicated_trees --all
 
 ```
 
