@@ -43,5 +43,33 @@ Further below we'll be exploring the following scenarios:
 
 - `ReplicatedMergeTree` and `MergeTree`, how they differ and how to simulate behaviour for a plain `MergeTree`
 - Verifying the deduplication window behaviours.
-- Fire and Forget async inserts and potential gotchyas.
-- Awaiting inserts and what happens if your await exceeds your timeouts.
+- Fire and Forget async inserts and potential gotchyas. -- Not Implemented Yet
+- Awaiting inserts and what happens if your await exceeds your timeouts. -- Not Implemented yet
+
+## Simulate ReplicatedMergeTrees
+
+We want to confirm the behaviour in the documents for how it's setup in the cloud. To simulate the deduplication is straightforward, but it gets more complex to show when it falls over. There are many settings that act in harmony, and while I gave it a valiant effort to get reliable results I had to resort to a brute force method.
+You can run the simulations yourself with the following mix task.
+
+```bash
+# There are additional options for --default and --settings, without options it will run --default
+mix async_insert.replicated_trees --all (options for --default and --settings)
+
+```
+
+- Default simulation: The simulation shows how a replicated merge tree dedupes out of the box
+- Settings simulation: I made use of settings to lower the deduplication threshold drastically to produce duplicates post the threashold reliably
+
+## Simulate MergeTrees
+
+These are what you are most likely to encounter locally, The differences in default between this and Replicated trees are essentially the differences between local and cloud.
+
+```bash
+
+# There are additional options for --default and --settings, without options it will run --default
+mix async_insert.merge_trees --all
+
+```
+
+- Default simulation: It shows that by default there are no deduplication in merge trees, and two inserts will create two rows.
+- Settings simulation: I made use of the `non_replicated_deduplication_window` to reproduce the same default behaviours as the Replicated Merge trees. inserts are deduplicated until the threshold is reached.
