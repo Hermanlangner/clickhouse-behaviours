@@ -9,9 +9,8 @@ defmodule ClickhouseBehaviours.Application do
   def start(_type, _args) do
     children = [
       ClickhouseBehavioursWeb.Telemetry,
-      ClickhouseBehaviours.Repo,
-      {DNSCluster, query: Application.get_env(:clickhouse_behaviours, :dns_cluster_query) || :ignore},
-      {Phoenix.PubSub, name: ClickhouseBehaviours.PubSub},
+      {DNSCluster,
+       query: Application.get_env(:clickhouse_behaviours, :dns_cluster_query) || :ignore},
       # Start the Finch HTTP client for sending emails
       {Finch, name: ClickhouseBehaviours.Finch},
       # Start a worker by calling: ClickhouseBehaviours.Worker.start_link(arg)
